@@ -1,0 +1,38 @@
+﻿@page "/"
+@namespace ResponsiveBlazorApp1.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+
+<script src="_assets/jquery-3.6.0.min.js"></script>
+
+<script type="text/javascript">
+	window.onBlazorReady = function() {
+        $('.top-menu').not(".mobile").click(function () {
+            $(this).find('ul > li').toggle();
+        });
+
+        $('.top-menu').not(".mobile").hover(function () {
+            $(this).find('ul > li').show();
+        }, function() {});
+
+		$('.menu-toggle').click(function () {
+			$(this).siblings('.top-menu.mobile').slideToggle('slow');
+		});
+			
+		$('.top-menu.mobile .sublist-toggle').click(function () {
+			$(this).siblings('.sublist').slideToggle('slow');
+		});
+
+		$('.top-menu.mobile .sf-with-ul').click(function () {
+			$(this).siblings('.sublist').slideToggle('slow');
+		});
+
+        $('.top-menu.mobile li:not(:has(ul))').click(function () {
+            $(this).closest('.top-menu.mobile').toggle();
+        });
+	};
+</script>

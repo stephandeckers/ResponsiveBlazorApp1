@@ -1,0 +1,333 @@
+:root {
+	--main-bg-color: #000;
+	--main-txt-color: #FFF;
+	--hover-color: #fada04;
+	--mobile-bg-color: #f6f6f6;
+	--mobile-bg-color-level2: #fff;
+	--mobile-txt-color: #666;
+	--g1: #FDE100;
+	--g2: #D6A71D;
+}
+
+.menu-toggle {
+	display: none
+}
+
+.headermenu {
+	padding: 8px 0;
+	vertical-align: sub;
+	letter-spacing: 1px;
+	margin: 0 0 0px 0;
+	display: block;
+	height: 26px;
+	width: auto;
+	clear: both;
+	z-index: 999;
+}
+
+	.headermenu ul {
+		padding: 0;
+		margin: 0;
+		width: 100%;
+		float: left;
+		position: relative;
+		background-color: var(--main-bg-color);
+		list-style: none;
+	}
+
+.top-menu li.active {
+	background-image: linear-gradient(var(--g1), var(--g2));
+}
+
+	.top-menu li.active > a {
+		color: var(--main-txt-color);
+	}
+
+.top-menu li {
+	position: relative;
+	background: var(--main-bg-color);
+	white-space: nowrap;
+	*white-space: normal;
+	-webkit-transition: background .2s;
+	transition: background .2s;
+}
+
+.top-menu ul {
+	position: absolute;
+	display: none;
+	top: 100%;
+	left: 0;
+	z-index: 999;
+	box-shadow: 2px 2px 6px rgba(0,0,0,.2);
+	min-width: fit-content;
+}
+
+.top-menu > li {
+	float: left;
+}
+
+.top-menu li:hover > ul {
+	display: block;
+}
+
+.top-menu a {
+	display: block;
+	position: relative;
+	padding: .75em 1em;
+	text-decoration: none;
+	color: var(--main-txt-color);
+}
+
+	.top-menu a:hover {
+		color: var(--hover-color);
+	}
+
+.top-menu ul ul {
+	top: 0;
+	left: 100%;
+}
+
+.top-menu .sf-with-ul {
+	padding-right: 2.5em;
+	*padding-right: 1em;
+}
+
+	.top-menu .sf-with-ul:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 1em;
+		margin-top: -3px;
+		height: 0;
+		width: 0;
+		border: 5px solid transparent;
+		border-top-color: rgba(255,255,255,.5);
+	}
+
+.top-menu > li > .sf-with-ul:focus:after,
+.top-menu > li:hover > .sf-with-ul:after {
+	border-top-color: white;
+}
+
+.top-menu ul .sf-with-ul:after {
+	margin-top: -5px;
+	margin-right: -3px;
+	border-color: transparent;
+	border-left-color: rgba(255,255,255,.5);
+}
+
+.top-menu ul li > .sf-with-ul:focus:after,
+.top-menu ul li:hover > .sf-with-ul:after {
+	border-left-color: white;
+}
+
+.mobile-menu, .hamburger {
+	display: none;
+}
+
+ul.top-menu.mobile {
+	display: none;
+}
+
+/* --- mobile (20201207 SDE)*/
+
+@media all and (max-width: 1000px) {
+
+	element.style {
+		display: block;
+	}
+
+	.top-menu li.active {
+		background-image: initial;
+	}
+
+		.top-menu li.active > a {
+			color: initial;
+		}
+
+	ul {
+		list-style: none;
+	}
+
+	.headermenu ul {
+		padding: initial;
+		margin: initial;
+		width: initial;
+		float: initial;
+		position: initial;
+		background-color: initial;
+		list-style: none;
+	}
+
+	.top-menu li {
+		position: initial;
+		background: initial;
+		white-space: initial;
+		*white-space: initial;
+		-webkit-transition: initial;
+		transition: initial;
+	}
+
+	.top-menu ul {
+		position: initial;
+		display: initial;
+		top: initial;
+		left: initial;
+		z-index: initial;
+		box-shadow: initial;
+		min-width: initial;
+	}
+
+	/*	.top-menu > li {
+		float: initial;
+	}*/
+
+	.top-menu > li {
+		float: initial;
+		/*margin: 1px 0;*/
+		border: 1px;
+		position: relative;
+		background-color: var(--mobile-bg-color);
+		/*background-color: #f6f6f6;*/
+	}
+
+	.top-menu li:hover > ul {
+		display: none;
+	}
+
+	.top-menu a:hover {
+		color: initial;
+	}
+
+	.menu-toggle {
+		display: block;
+		color: #fff;
+		padding: 15px;
+		font-size: 35px;
+		cursor: pointer;
+		font-weight: bold;
+		text-transform: uppercase;
+		background: #151515;
+	}
+
+	.sublist-toggle {
+		top: 0;
+		right: 0;
+		color: #fff;
+		width: 55px;
+		height: 55px;
+		padding: 15px;
+		cursor: pointer;
+		font-size: 15px;
+		font-weight: bold;
+		position: absolute;
+		text-transform: uppercase;
+		border-left: 1px solid #fff;
+		background: url(images/toggle-black.png) center no-repeat;
+	}
+
+	.top-menu {
+		display: none;
+	}
+
+		.top-menu > li {
+			float: initial;
+			position: relative;
+			background-color: var(--mobile-bg-color);
+		}
+
+		.top-menu .sublist {
+			display: none;
+			padding: 5px 0;
+			background-color: #fff;
+		}
+
+		.top-menu a {
+			color: #666;
+			padding: 18px;
+			display: block;
+			font-size: 25px;
+			text-decoration: none;
+		}
+
+		.top-menu .sublist li {
+			position: relative;
+			margin: 1px 0 1px 20px;
+		}
+
+	.sf-with-ul {
+		cursor: pointer;
+	}
+
+	/* BEOF Hamburger */
+	.hamburger {
+		padding: 15px 15px 0px 0px;
+		display: inline-block;
+		cursor: pointer;
+		transition-property: opacity, filter;
+		transition-duration: 0.15s;
+		transition-timing-function: linear;
+		font: inherit;
+		color: inherit;
+		text-transform: none;
+		background-color: transparent;
+		border: 0;
+		margin: 0;
+		overflow: visible;
+		float: right;
+	}
+
+		.hamburger:hover {
+			opacity: 0.7;
+		}
+
+		.hamburger.is-active:hover {
+			opacity: 0.7;
+		}
+
+		.hamburger.is-active .hamburger-inner,
+		.hamburger.is-active .hamburger-inner::before,
+		.hamburger.is-active .hamburger-inner::after {
+			background-color: #000;
+		}
+
+	.hamburger-box {
+		width: 40px;
+		height: 24px;
+		display: inline-block;
+		position: relative;
+		vertical-align: top;
+	}
+
+	.hamburger-inner {
+		display: block;
+		top: 50%;
+		margin-top: -2px;
+	}
+
+		.hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
+			width: 40px;
+			height: 4px;
+			background-color: white;
+			border-radius: 4px;
+			position: absolute;
+			transition-property: transform;
+			transition-duration: 0.15s;
+			transition-timing-function: ease;
+		}
+
+			.hamburger-inner::before, .hamburger-inner::after {
+				content: "";
+				display: block;
+			}
+
+			.hamburger-inner::before {
+				top: -10px;
+			}
+
+			.hamburger-inner::after {
+				bottom: -10px;
+			}
+
+	/* EOF Hamburger */
+}

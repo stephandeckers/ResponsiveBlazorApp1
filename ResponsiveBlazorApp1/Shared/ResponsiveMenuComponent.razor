@@ -1,0 +1,231 @@
+﻿<h3>ResponsiveMenuComponent</h3>
+
+<div class="headermenu">
+	<div class="menu-toggle">Menu
+		<button class="hamburger" type="button">
+			<span class="hamburger-box">
+				<span class="hamburger-inner"></span>
+			</span>
+		</button>			
+	</div>
+
+@GetMenu( )
+
+</div>
+
+@using System;
+@using System.Text;
+@using System.Collections.Generic;
+@using Microsoft.AspNetCore.Components.Rendering
+
+@code {
+	[ Inject()]
+	protected IJSRuntime		JsRuntime	{ get; set; }
+
+	[ Parameter( )]
+	public MenuEntryCollection	Items		{ get; set; } = new MenuEntryCollection( )
+		{
+			new MenuEntry( ) { Text = "Home",					Url = "/" }
+		,	new MenuEntry( ) { Text	= "Verzamelmunten Kopen",	Url	= "/verzamelmunten_kopen" 
+				, SubItems = new MenuEntryCollection( )
+				{
+					new MenuEntry( ) { Text = "Aanbiedingen / Specials",	Url = "/aanbiedingen-specials_c_35" }
+				,	new MenuEntry( ) { Text = "Nieuwe uitgiften KNM",		Url = "/nieuwe-uitgiften-knm_c_235" }
+				,	new MenuEntry( ) { Text = "Provinciaal",				Url = "/provinciaal_c_33"
+						, SubItems = new MenuEntryCollection( )
+						{
+							new MenuEntry( ) { Text = "Friesland",			Url = "/friesland_c_46" }
+						,	new MenuEntry( ) { Text = "Gelderland",			Url = "/gelderland_c_47" }
+						,	new MenuEntry( ) { Text = "Holland",			Url = "/holland_c_48" }
+						,	new MenuEntry( ) { Text = "Overijssel",			Url = "/overijssel_c_49" }
+						,	new MenuEntry( ) { Text = "Utrecht",			Url = "/utrecht_c_50" }
+						,	new MenuEntry( ) { Text = "West-Friesland",		Url = "/west-friesland_c_51" }
+						,	new MenuEntry( ) { Text = "Zeeland",			Url = "/zeeland_c_52" }
+						,	new MenuEntry( ) { Text = "Overigen / Steden",	Url = "/overigen-steden_c_53" }
+						}
+					}
+				,	new MenuEntry( ) { Text = "Bataafse Republiek",		Url = "/bataafse-republiek_c_38" }
+				,	new MenuEntry( ) { Text = "Napoleon",				Url = "/napoleon_c_37" 
+						, SubItems = new MenuEntryCollection( )
+						{
+							new MenuEntry( ) { Text = "½ franc",				Url = "/-franc_c_78" }
+						,	new MenuEntry( ) { Text = "1 franc",				Url = "/1-franc_c_79" }
+						,	new MenuEntry( ) { Text = "2 francs",				Url = "/2-francs_c_80" }
+						,	new MenuEntry( ) { Text = "5 francs",				Url = "/5-francs_c_81" }
+						,	new MenuEntry( ) { Text = "20 francs goud",			Url = "/20-francs-goud_c_82" }
+						,	new MenuEntry( ) { Text = "10 Stuiver",				Url = "/10-stuiver_c_74" }
+						,	new MenuEntry( ) { Text = "1 Gulden",				Url = "/1-gulden_c_75" }
+						,	new MenuEntry( ) { Text = "Zilveren Dukaten",		Url = "/zilveren-dukaten_c_86" }
+						,	new MenuEntry( ) { Text = "50 Stuivers",			Url = "/50-stuivers_c_77" }
+						,	new MenuEntry( ) { Text = "Rijksdaalders",			Url = "/rijksdaalders_c_76" }
+						,	new MenuEntry( ) { Text = "10 Gulden Goud",			Url = "/10-gulden-goud_c_83" }
+						,	new MenuEntry( ) { Text = "20 Gulden Goud",			Url = "/20-gulden-goud_c_84" }
+						,	new MenuEntry( ) { Text = "Gouden Dukaten",			Url = "/gouden-dukaten_c_85" }
+						,	new MenuEntry( ) { Text = "Dubbele Gouden Dukaten",	Url = "/dubbele-gouden-dukaten_c_228" }
+						}
+					}
+
+				,	new MenuEntry( ) { Text = "Koninkrijk",				Url = "/koninkrijk_c_27" 
+						, SubItems = new MenuEntryCollection( )
+						{
+							new MenuEntry( ) { Text = "½ Cent",				Url = "/halve-centen_c_54" 
+								, SubItems = new MenuEntryCollection( )
+								{
+									new MenuEntry( ) { Text = "½ Cent Willem I",		Url = "/halve-centen-willem-1_c_224" }
+								,	new MenuEntry( ) { Text = "½ Cent Willem II",		Url = "/halve-centen-willem-2_c_225" }
+								,	new MenuEntry( ) { Text = "½ Cent Willem III",		Url = "/halve-centen-willem-3_c_226" }
+								,	new MenuEntry( ) { Text = "½ Cent Wilhelmina",		Url = "/halve-centen-wilhelmina_c_227" }
+								}
+							}
+						,	new MenuEntry( ) { Text = "1 Cent",				Url = "/centen_c_55"
+								, SubItems = new MenuEntryCollection( )
+								{
+									new MenuEntry( ) { Text = "1 Cent Willem I",		Url = "/centen-willem-1_c_219" }
+								,	new MenuEntry( ) { Text = "1 Cent Willem III",		Url = "/centen-willem-3_c_221" }
+								,	new MenuEntry( ) { Text = "1 Cent Wilhelmina",		Url = "/wilhelmina-centen_c_222" }
+								,	new MenuEntry( ) { Text = "1 Cent Juliana",			Url = "/juliana-centen_c_223" }
+								}
+							}
+						,	new MenuEntry( ) { Text = "2½ Cent",			Url = "/2-5-cent_c_56"
+								, SubItems = new MenuEntryCollection( )
+								{
+									new MenuEntry( ) { Text = "2½ Cent Willem III",		Url = "/2-5-cent-willem-3_c_217" }
+								,	new MenuEntry( ) { Text = "2½ Cent Wilhelmina",		Url = "/2-5-cent-wilhelmina_c_218" }
+								}
+						}
+						,	new MenuEntry( ) { Text = "5 Cent",				Url = "/stuivers_c_57" }
+						,	new MenuEntry( ) { Text = "10 Cent",			Url = "/dubbeltjes_c_58" }
+						,	new MenuEntry( ) { Text = "25 Cent",			Url = "/kwartjes_c_59" }
+						,	new MenuEntry( ) { Text = "½ Gulden",			Url = "/halve-guldens_c_60" }
+						,	new MenuEntry( ) { Text = "1 Gulden",			Url = "/1-gulden_c_40" }
+						,	new MenuEntry( ) { Text = "2½ Gulden",			Url = "/rijksdaalders_c_61" }
+						,	new MenuEntry( ) { Text = "3 Gulden",			Url = "/3-guldenstukken_c_64" }
+						,	new MenuEntry( ) { Text = "5 Gulden",			Url = "/5-gulden_c_41" }
+						,	new MenuEntry( ) { Text = "10 Gulden Zilver",	Url = "/zilveren-tientjes-kopen_c_42" }
+						,	new MenuEntry( ) { Text = "20 Gulden Goud",		Url = "/20-gulden-goud_c_84" }
+						,	new MenuEntry( ) { Text = "50 Gulden",			Url = "/50-gulden_c_67" }
+						}
+					}
+				}
+			}
+		,	new MenuEntry( ) { Text = "Goud Kopen",			Url = "/goud_kopen"
+				, SubItems = new MenuEntryCollection( )
+				{
+					new MenuEntry( ) { Text = "Gouden beleggingsmunten",		Url = "/gouden-munten-kopen_c_21" }
+				,	new MenuEntry( ) { Text = "Gouden munten (buitenland)",		Url = "/gouden-munten-buitenland_c_30" }
+				,	new MenuEntry( ) { Text = "Goud baren",						Url = "/goudbaren-kopen_c_22" }
+				}
+			}
+		,	new MenuEntry( ) { Text = "Zilver Kopen",			Url = "/zilver_kopen" 
+				, SubItems = new MenuEntryCollection( )
+				{
+					new MenuEntry( ) { Text = "Zilveren munten",	Url = "/zilveren-munten-kopen_c_19" }
+				,	new MenuEntry( ) { Text = "Zilver baren",		Url = "/zilverbaren-kopen_c_20" }
+				}
+			}
+		,	new MenuEntry( ) { Text = "Inkoop",					Url = "/inkoop" }
+		,	new MenuEntry( ) { Text = "Informatie",				Url = "/informatie" }
+		,	new MenuEntry( ) { Text = "Contact",				Url = "/contact" }
+		};
+
+	/// <summary>
+	/// Render menu created private inside this class
+	/// </summary>
+	/// <returns></returns>
+	MarkupString GetMenu( )
+	{
+		return ((MarkupString)getMenuHtml( ));
+	}
+
+	private string getMenuHtml()
+	{
+		int i = 0;
+		StringBuilder sb = new StringBuilder( );
+		sb.Append( @"<ul class=""top-menu"">" );
+		foreach( MenuEntry item in this.Items)
+		{
+			if( i == 0)
+			{
+				sb.AppendFormat( @"<li class=""active""><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
+				i++;
+				continue;
+			}
+
+			if( item.SubItems != null)
+			{				
+				sb.Append( getSubMenu( item));
+				i++;
+				continue;
+			}
+			sb.AppendFormat( @"<li><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
+			i++;
+		}
+		sb.Append( @"</ul>" );
+
+		// --- mobile (20220417 SDE)
+
+		sb.Append( @"<ul class=""top-menu mobile"">" );
+		foreach( MenuEntry item in this.Items)
+		{
+			if( item.SubItems != null)
+			{				
+				sb.Append( getSubMenu( item));
+				i++;
+				continue;
+			}
+			sb.AppendFormat( @"<li><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
+			i++;
+		}
+		sb.Append( @"</ul>" );
+
+		return (sb.ToString( ));
+	}
+
+	/// <summary>
+	/// getSubMenu
+	/// </summary>
+	/// <param name="menuEntry"></param>
+	/// <returns></returns>
+	private string getSubMenu( MenuEntry menuEntry)
+	{
+		d.WriteLine( string.Format( "{0}.{1} ({2}.{3}):{4}", GetType().Name, System.Reflection.MethodInfo.GetCurrentMethod( ).Name, System.Threading.Thread.CurrentThread.ManagedThreadId, Global.CallCount++, string.Empty));
+
+		StringBuilder sb = new StringBuilder( );
+		sb.AppendFormat( @"<li>");
+		sb.AppendFormat( @"<a class=""sf-with-ul"">{0}</a>", menuEntry.Text );
+		sb.AppendFormat( @"<div class=""sublist-toggle""></div>");
+		sb.AppendFormat( @"<ul class=""sublist"">");
+		foreach( MenuEntry item in menuEntry.SubItems)
+		{
+			if( item.SubItems != null)
+			{				
+				sb.AppendFormat( getSubMenu( item));
+				continue;
+			}
+			sb.AppendFormat( @"<li><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
+		}
+		sb.AppendFormat( @"</ul></li>");
+		return (sb.ToString( ));
+	}
+
+	public class MenuEntryCollection : System.Collections.Generic.List<MenuEntry>
+	{ }
+
+	public class MenuEntry
+	{
+		internal string Text				{ get; set; }
+		internal string Url					{ get; set; }
+
+		internal MenuEntryCollection SubItems	{ get; set; }
+	}
+
+	protected override Task OnAfterRenderAsync( bool firstRender )
+	{
+		if( firstRender)
+		{
+			ValueTask valueTask = JsRuntime.InvokeVoidAsync("onBlazorReady");
+		}
+
+		return base.OnAfterRenderAsync( firstRender );
+	}
+}

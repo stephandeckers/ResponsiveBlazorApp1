@@ -1,0 +1,46 @@
+﻿@inherits LayoutComponentBase
+
+<PageTitle>ResponsiveBlazorApp1</PageTitle>
+
+<div class="page">
+    <ResponsiveMenuComponent Items=@Items />
+
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+@using MenuEntry			= ResponsiveMenuComponent.MenuEntry;
+@using MenuEntryCollection	= ResponsiveMenuComponent.MenuEntryCollection;
+
+@code{
+	public MenuEntryCollection	Items = new MenuEntryCollection( )
+			{
+			new MenuEntry( ) { Text = "Home",		Url = "/" }
+		,	new MenuEntry( ) { Text = "Jeans",		Url = "/jeans" 
+			, SubItems = new MenuEntryCollection( )
+				{
+				new MenuEntry( ) { Text = "Wide leg jeans",	Url = "/wide_leg_jeans" }
+			,	new MenuEntry( ) { Text = "Straight jeans",	Url = "/straight_jeans" }
+			,	new MenuEntry( ) { Text = "Loose jeans",	Url = "/loose_jeans" }
+		}
+		}
+		,	new MenuEntry( ) { Text = "Shorts",		Url = "/shorts" 
+			, SubItems = new MenuEntryCollection( )
+				{
+				new MenuEntry( ) { Text = "Sweet jersey shorts",	Url = "/sweet_jersey" 
+				, SubItems = new MenuEntryCollection( )
+					{
+					new MenuEntry( ) { Text = "Jersey1",	Url = "/Jersey1" }
+				,	new MenuEntry( ) { Text = "Jersey2",	Url = "/Jersey2" }
+			}
+			}
+			,	new MenuEntry( ) { Text = "Denim shorts",			Url = "/demin_jersey" 	}
+		}
+		}
+		,	new MenuEntry( ) { Text = "Skirts",		Url = "/skirts" }
+		,	new MenuEntry( ) { Text = "Blazers",	Url = "/blazers" }
+	};
+}
