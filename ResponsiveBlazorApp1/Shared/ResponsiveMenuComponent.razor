@@ -188,8 +188,6 @@
 	/// <returns></returns>
 	private string getSubMenu( MenuEntry menuEntry)
 	{
-		d.WriteLine( string.Format( "{0}.{1} ({2}.{3}):{4}", GetType().Name, System.Reflection.MethodInfo.GetCurrentMethod( ).Name, System.Threading.Thread.CurrentThread.ManagedThreadId, Global.CallCount++, string.Empty));
-
 		StringBuilder sb = new StringBuilder( );
 		sb.AppendFormat( @"<li>");
 		sb.AppendFormat( @"<a class=""sf-with-ul"">{0}</a>", menuEntry.Text );
