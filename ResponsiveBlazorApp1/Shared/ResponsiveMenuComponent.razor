@@ -190,7 +190,8 @@
 	{
 		StringBuilder sb = new StringBuilder( );
 		sb.AppendFormat( @"<li>");
-		sb.AppendFormat( @"<a class=""sf-with-ul"">{0}</a>", menuEntry.Text );
+		//sb.AppendFormat( @"<a class=""sf-with-ul"">{0}</a>", menuEntry.Text );
+		sb.AppendFormat( @"<a class=""sf-with-ul"" href=""{0}"">{1}</a>", menuEntry.Url, menuEntry.Text );
 		sb.AppendFormat( @"<div class=""sublist-toggle""></div>");
 		sb.AppendFormat( @"<ul class=""sublist"">");
 		foreach( MenuEntry item in menuEntry.SubItems)
