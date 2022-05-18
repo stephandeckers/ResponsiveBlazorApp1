@@ -142,22 +142,31 @@
 		int i = 0;
 		StringBuilder sb = new StringBuilder( );
 		sb.Append( @"<ul class=""top-menu"">" );
+
 		foreach( MenuEntry item in this.Items)
 		{
+			if( item.SubItems != null)
+			{				
+				if( i == 0)
+				{
+					sb.Append( getSubMenu( item, true));
+				}
+				else
+				{
+					sb.Append( getSubMenu( item));
+				}
+
+				i++;
+				continue;
+			}
 			if( i == 0)
 			{
 				sb.AppendFormat( @"<li class=""active""><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
-				i++;
-				continue;
 			}
-
-			if( item.SubItems != null)
-			{				
-				sb.Append( getSubMenu( item));
-				i++;
-				continue;
-			}
-			sb.AppendFormat( @"<li><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
+			else
+			{
+				sb.AppendFormat( @"<li><a href=""{0}"">{1}</a></li>", item.Url, item.Text );
+			}	
 			i++;
 		}
 		sb.Append( @"</ul>" );
@@ -186,11 +195,19 @@
 	/// </summary>
 	/// <param name="menuEntry"></param>
 	/// <returns></returns>
-	private string getSubMenu( MenuEntry menuEntry)
+	private string getSubMenu( MenuEntry menuEntry, bool active=false)
 	{
 		StringBuilder sb = new StringBuilder( );
-		sb.AppendFormat( @"<li>");
-		//sb.AppendFormat( @"<a class=""sf-with-ul"">{0}</a>", menuEntry.Text );
+
+		if( active)
+		{
+			sb.AppendFormat( @"<li class=""active"">");
+		}
+		else
+		{
+			sb.AppendFormat( @"<li>");
+		}
+
 		sb.AppendFormat( @"<a class=""sf-with-ul"" href=""{0}"">{1}</a>", menuEntry.Url, menuEntry.Text );
 		sb.AppendFormat( @"<div class=""sublist-toggle""></div>");
 		sb.AppendFormat( @"<ul class=""sublist"">");
